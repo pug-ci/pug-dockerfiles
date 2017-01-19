@@ -33,7 +33,7 @@ ELASTIC_SEARCH_STORE="
 echo "
 <filter $MATCH_PATTERN>
   type parser
-  format json_in_string
+  format foreman
   time_format %Y-%m-%dT%H:%M:%S.%L%Z
   key_name log
   hash_value_field log
