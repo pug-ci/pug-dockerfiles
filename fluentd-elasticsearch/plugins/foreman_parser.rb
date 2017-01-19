@@ -22,10 +22,10 @@ module Fluent
 
         output = {
           service: match_service(input),
-          message: match_message(input)
+          log: match_message(input)
         }
 
-        yield time, output.to_json
+        yield time, output
       end
 
       private

@@ -36,7 +36,6 @@ echo "
   format foreman
   time_format %Y-%m-%dT%H:%M:%S.%L%Z
   key_name log
-  hash_value_field log
 </filter>" >> $FLUENT_CONF_FILE
 
 echo "
