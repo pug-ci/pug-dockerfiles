@@ -20,10 +20,11 @@ module Fluent
       def parse(input)
         time = @time_parser.parse match_time(input)
 
-        output = {
+        output = parse_log input
+        output.merge!(
           service: match_service(input),
-          log: match_message(input)
-        }
+          log: match_log(input)
+        )
 
         yield time, output
       end
@@ -42,9 +43,17 @@ module Fluent
         match ? match[1] : nil
       end
 
-      def match_message(input)
+      def match_log(input)
         match = input.match MESSAGE_REGEX
         match ? match[1] : nil
+      end
+
+      def parse_log(input)
+        log = match_log input
+
+        JSON.parse log
+      rescue
+        {}
       end
     end
   end
